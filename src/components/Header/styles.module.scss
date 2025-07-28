@@ -1,0 +1,62 @@
+@use '@styles/variable' as *;
+@use '@styles/mixin' as *;
+
+.wrapper {
+    @include flex_box_custom(center, center, 0);
+}
+
+.containerHeader {
+    width: 1250px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 83px;
+
+    .containerBox {
+        @include flex_box_custom(center, center, 4px);
+    }
+}
+
+.containerBoxIcon {
+    @include flex_box_custom(center, center, 8px);
+}
+
+.containerMenu {
+    @include flex_box_custom(center, center, 20px);
+    margin: 0 20px;
+}
+
+.boxIcon {
+    @include flex_box_custom(center, center, 0);
+
+    background-color: $primary_color;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+}
+
+.menu::after {
+    position: absolute;
+    top: calc(100% + 4px);
+    content: '';
+    display: block;
+    height: 3px;
+    width: 100%;
+    background-color: $primary_color;
+    transform-origin: right;
+    transform: scale(0);
+    opacity: 0;
+}
+
+.menu {
+    position: relative;
+    cursor: pointer;
+    font-size: 15px;
+    color: #333;
+}
+
+.menu:hover::after {
+    transform: scale(1);
+    transition: all 0.3s ease-in;
+    opacity: 1;
+}
