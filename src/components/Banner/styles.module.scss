@@ -1,0 +1,30 @@
+@use '@styles/variable' as *;
+@use '@styles/mixin' as *;
+
+.container {
+    @include flex_box_custom(center, center, 0px);
+
+    min-height: 750px;
+    background-image: url('../../../src/assets/icons/img/banner.webp');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    .content {
+        @include flex_box_custom(center, center, 24px);
+
+        flex-direction: column;
+
+        .title {
+            font-size: 42px;
+            margin: 0;
+            color: $second_color;
+            font-weight: 400;
+        }
+
+        .des {
+            font-size: 16px;
+            color: $five_color;
+        }
+    }
+}

@@ -1,1 +1,22 @@
+@use '@styles/variable' as *;
 @use '@styles/mixin' as *;
+
+.btn {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 400;
+    padding: 12px 45px;
+    border-radius: 4px;
+    background-color: $primary_color;
+    border: none;
+    outline: none;
+    border: 1px solid transparent;
+
+    &:hover {
+        cursor: pointer;
+        background-color: transparent;
+        color: #000;
+        border-color: #333;
+        transition: all ease 0.3s;
+    }
+}
