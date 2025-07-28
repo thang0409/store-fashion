@@ -1,0 +1,39 @@
+@use '@styles/variable' as *;
+@use '@styles/mixin' as *;
+
+.container {
+    @include flex_box_custom(space-between, center, 0px);
+
+    --height: 144px;
+    background-color: $primary_color;
+    margin-top: calc(-1 * var(--height) / 2);
+    padding: 20px 50px;
+}
+
+.containerCard {
+    @include flex_box_custom(center, center, 18px);
+
+    width: 280px;
+    height: 104px;
+}
+
+.containerContent {
+    @include flex_box_custom(center, start, 12px);
+
+    flex-direction: column;
+
+    .titleStyle {
+        font-size: 17px;
+        color: #fff;
+    }
+
+    .desStyle {
+        font-size: 16px;
+        color: #ffffffc7;
+    }
+}
+
+.iconStyle {
+    font-size: 50px;
+    color: gray;
+}
