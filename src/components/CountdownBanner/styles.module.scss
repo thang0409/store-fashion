@@ -1,0 +1,18 @@
+@use '@styles/variable' as *;
+@use '@styles/mixin' as *;
+
+.container {
+    @include flex_box_custom(center, center, 30px);
+
+    flex-direction: column;
+    background-image: url('../../assets/icons/img/countdown.webp');
+    height: 410px;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.containerTimer {
+    @include flex_box_custom(center, center, 10px);
+}

@@ -1,0 +1,10 @@
+@use '@styles/variable' as *;
+@use '@styles/mixin' as *;
+
+.container {
+    @include flex_box_custom(space-between, center, 14px);
+
+    .containerItem {
+        flex: 1;
+    }
+}
