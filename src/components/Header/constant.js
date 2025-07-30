@@ -13,15 +13,18 @@ export const dataIcon = [
     },
     {
         type: 'reload',
-        href: '#'
+        href: '#',
+        title: 'compare'
     },
     {
         type: 'heart',
-        href: '#'
+        href: '#',
+        title: 'wishlist'
     },
     {
         type: 'cart',
-        href: '#'
+        href: '#',
+        title: 'cart'
     }
 ];
 

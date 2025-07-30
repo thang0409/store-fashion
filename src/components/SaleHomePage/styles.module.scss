@@ -1,0 +1,33 @@
+@use '@styles/variable' as *;
+@use '@styles/mixin' as *;
+
+.container {
+    @include flex_box_custom(space-between, center, 0px);
+
+    margin-top: 100px;
+
+    .boxImg {
+        @include flex_box_custom(center, center, 0px);
+        width: 100%;
+    }
+
+    .title {
+        font-size: 35px;
+        color: $second_color;
+        font-weight: 400;
+        text-align: center;
+    }
+
+    .des {
+        font-size: 16px;
+        color: $five_color;
+        text-align: center;
+        width: 460px;
+        line-height: 25px;
+    }
+
+    .boxBtn {
+        @include flex_box_custom(center, center, 0px);
+        margin-top: 30px;
+    }
+}

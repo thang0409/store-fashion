@@ -1,0 +1,19 @@
+@use '@styles/variable' as *;
+@use '@styles/mixin' as *;
+
+.container {
+    @include flex_box_custom(space-between, space-between, 0px);
+
+    flex-direction: column;
+    padding: 20px;
+    height: 95vh;
+
+    .boxBtn {
+        width: 100%;
+    }
+
+    .btnWishList {
+        width: 100%;
+        margin: 8px 0;
+    }
+}

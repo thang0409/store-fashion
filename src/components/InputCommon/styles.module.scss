@@ -1,0 +1,38 @@
+@use '@styles/variable' as *;
+@use '@styles/mixin' as *;
+
+.container {
+    .labelInput {
+        font-size: 14px;
+        color: $primary_color;
+        margin-bottom: 5px;
+    }
+
+    .boxInput {
+        position: relative;
+        width: 100%;
+
+        input {
+            width: 100%;
+            border: 1px solid #ccc;
+            outline: none;
+            padding: 10px 0 10px 10px;
+            margin-bottom: 8px;
+        }
+
+        .boxIcon {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-80%);
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        .errMsg {
+            font-size: 12px;
+            color: red;
+            margin-bottom: 20px;
+        }
+    }
+}

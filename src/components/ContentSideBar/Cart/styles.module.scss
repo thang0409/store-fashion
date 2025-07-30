@@ -1,0 +1,19 @@
+@use '@styles/variable' as *;
+@use '@styles/mixin' as *;
+
+.container {
+    @include flex_box_custom(space-between, space-between, 0px);
+
+    flex-direction: column;
+    padding: 20px;
+    height: 95vh;
+
+    .total {
+        @include flex_box_custom(space-between, center, 0px);
+    }
+
+    .btnCart {
+        width: 100%;
+        margin: 8px 0;
+    }
+}

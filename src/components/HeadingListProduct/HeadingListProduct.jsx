@@ -18,9 +18,11 @@ function HeadingListProduct({ data }) {
                 </div>
 
                 {data.map((item, index) => (
-                    <div className={containerItem}>
+                    <div
+                        className={containerItem}
+                        key={`${item.id}-${item.name}`}
+                    >
                         <ProductItem
-                            key={index}
                             src={item.images[0]}
                             prevSrc={item.images[1]}
                             name={item.name}

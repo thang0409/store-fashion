@@ -3,18 +3,47 @@ import { dataIcon, dataMenu } from '@/components/Header/constant';
 import styles from './styles.module.scss';
 import Menu from '@/components/Header/Menu/Menu';
 import Logo from '@/assets/icons/img/Logo-retina.webp';
+import useScroll from '@/hooks/useScroll';
+import { useContext, useEffect, useState } from 'react';
+import classNames from 'classnames';
+import { SideBarContext } from '@/contexts/SideBar';
 
 function Header() {
     const {
         wrapper,
+        topHeader,
         containerHeader,
         containerBoxIcon,
         containerMenu,
         containerBox,
-        boxIcon
+        boxIcon,
+        fixedToHeader
     } = styles;
+    const { isOpen, setIsOpen, type, setType } = useContext(SideBarContext);
+
+    const [fixedHeader, setFixedHeader] = useState(false);
+
+    const { scrollPositon } = useScroll();
+
+    const handleOpenSideBar = (type) => {
+        setIsOpen(true);
+        setType(type);
+    };
+
+    useEffect(() => {
+        if (scrollPositon > 80) {
+            setFixedHeader(true);
+        } else {
+            setFixedHeader(false);
+        }
+    });
+
     return (
-        <div className={wrapper}>
+        <div
+            className={classNames(wrapper, topHeader, {
+                [fixedToHeader]: fixedHeader
+            })}
+        >
             <div className={containerHeader}>
                 {/* Khối trái */}
                 <div className={containerBox}>
@@ -82,6 +111,9 @@ function Header() {
                                         fontSize: '20px',
                                         margin: '0px 8px'
                                     }}
+                                    onClick={() =>
+                                        handleOpenSideBar(item.title)
+                                    }
                                 />
                             ))}
                     </div>

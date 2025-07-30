@@ -5,7 +5,7 @@ import { TfiReload } from 'react-icons/tfi';
 import { FaRegHeart } from 'react-icons/fa';
 import { FiShoppingCart } from 'react-icons/fi';
 
-function BoxIcon({ type, href, style, className }) {
+function BoxIcon({ type, href, style, className, onClick }) {
     const handleRenderIcon = (type) => {
         switch (type) {
             case 'fb':
@@ -25,7 +25,7 @@ function BoxIcon({ type, href, style, className }) {
         }
     };
     return (
-        <div style={style} className={className}>
+        <div onClick={onClick} style={style} className={className}>
             {handleRenderIcon(type)}
         </div>
     );
