@@ -8,11 +8,15 @@ import InputCommon from '@/components/InputCommon/InputCommon';
 import styles from './styles.module.scss';
 import Button from '@/components/Button/Button';
 
-import { getInfo, register, signIn } from '@/apis/authService';
+import { register, signIn } from '@/apis/authService';
+import { SideBarContext } from '@/contexts/SideBar';
+import { StoreContext } from '@/contexts/storeProvider';
 function Login() {
     const { container, title, boxRemember, boxBtn, lostPass } = styles;
     const [isRegister, setIsRegister] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+    const { setIsOpen } = useContext(SideBarContext);
+    const { setUserId } = useContext(StoreContext);
     const { toast } = useContext(ToastContext);
 
     const formik = useFormik({
@@ -55,8 +59,12 @@ function Login() {
                         setIsLoading(false);
                         const { id, refreshToken, token } = res.data;
 
+                        setUserId(id);
+                        Cookies.set('userId', id);
                         Cookies.set('token', token);
                         Cookies.set('refreshToken', refreshToken);
+                        toast.success('Đăng nhập thành công');
+                        setIsOpen(false);
                     })
                     .catch((err) => {
                         setIsLoading(false);
@@ -68,10 +76,6 @@ function Login() {
     const handleToggle = () => {
         setIsRegister(!isRegister);
     };
-
-    useEffect(() => {
-        getInfo();
-    }, []);
 
     return (
         <div className={container}>

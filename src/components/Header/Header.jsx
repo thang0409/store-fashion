@@ -7,6 +7,7 @@ import useScroll from '@/hooks/useScroll';
 import { useContext, useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { SideBarContext } from '@/contexts/SideBar';
+import { StoreContext } from '@/contexts/storeProvider';
 
 function Header() {
     const {
