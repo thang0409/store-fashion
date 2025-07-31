@@ -9,30 +9,38 @@ import { getProduct } from '@/apis/productService';
 import PopularProduct from '@/components/PopularProduct/PopularProduct';
 import SaleHomePage from '@/components/SaleHomePage/SaleHomePage';
 import Footer from '@/components/Footer/Footer';
+import { OurShopProvider } from '@/contexts/OurShopProvider';
 
 function HomePage() {
     const { container } = styles;
     const [listProduct, setListProduct] = useState([]);
 
     useEffect(() => {
-        getProduct().then((res) => {
+        const query = {
+            sortType: 0,
+            page: 1,
+            limit: 10
+        };
+        getProduct(query).then((res) => {
             setListProduct(res.contents);
         });
     }, []);
 
     return (
-        <div>
-            <div className={container}>
-                <Header />
-                <Banner />
-                <Info />
-                <AdvanceHeadling />
-                <HeadingListProduct data={listProduct.slice(0, 2)} />
-                <PopularProduct data={listProduct.slice(2, 10)} />
-                <SaleHomePage />
-                <Footer />
+        <OurShopProvider>
+            <div>
+                <div className={container}>
+                    <Header />
+                    <Banner />
+                    <Info />
+                    <AdvanceHeadling />
+                    <HeadingListProduct data={listProduct.slice(0, 2)} />
+                    <PopularProduct data={listProduct.slice(2, 10)} />
+                    <SaleHomePage />
+                    <Footer />
+                </div>
             </div>
-        </div>
+        </OurShopProvider>
     );
 }
 
