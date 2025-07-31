@@ -3,7 +3,7 @@ import styles from './styles.module.scss';
 import { iconProductItem } from '@/components/ProductItem/constant';
 import IconItem from '@/components/ProductItem/IconItem/IconItem';
 import classNames from 'classnames';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { OurShopContext } from '@/contexts/OurShopProvider';
 
 function ProductItem({ src, prevSrc, name, price, detail, isHomePage = true }) {
@@ -18,11 +18,31 @@ function ProductItem({ src, prevSrc, name, price, detail, isHomePage = true }) {
         size,
         textCenter,
         boxBtn,
-        content
+        content,
+        isActiveSize,
+        btnClear
     } = styles;
 
-    const { isShowGrid } = useContext(OurShopContext);
+    // const { isShowGrid } = useContext(OurShopContext);
+    const ourShop = useContext(OurShopContext);
+    const [isShowGrid, setIsShowGrid] = useState(ourShop?.isShowGrid);
+    const [sizeChoose, setSizeChoose] = useState('');
 
+    const handleChooseSize = (size) => {
+        setSizeChoose(size);
+    };
+
+    const handleClearSize = () => {
+        setSizeChoose('');
+    };
+
+    useEffect(() => {
+        if (isHomePage) {
+            setIsShowGrid(true);
+        } else {
+            setIsShowGrid(ourShop?.isShowGrid);
+        }
+    }, [isHomePage, ourShop?.isShowGrid]);
     return (
         <div className={!isShowGrid ? container : ''}>
             <div className={boxImg}>
@@ -39,10 +59,22 @@ function ProductItem({ src, prevSrc, name, price, detail, isHomePage = true }) {
                 {!isHomePage && (
                     <div className={boxSize}>
                         {detail.size.map((item, index) => (
-                            <div key={index} className={size}>
+                            <div
+                                onClick={() => handleChooseSize(item.name)}
+                                key={index}
+                                className={classNames(size, {
+                                    [isActiveSize]: sizeChoose === item.name
+                                })}
+                            >
                                 {item.name}
                             </div>
                         ))}
+                    </div>
+                )}
+
+                {sizeChoose && (
+                    <div onClick={handleClearSize} className={btnClear}>
+                        Clear
                     </div>
                 )}
 

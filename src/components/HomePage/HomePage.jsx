@@ -27,20 +27,18 @@ function HomePage() {
     }, []);
 
     return (
-        <OurShopProvider>
-            <div>
-                <div className={container}>
-                    <Header />
-                    <Banner />
-                    <Info />
-                    <AdvanceHeadling />
-                    <HeadingListProduct data={listProduct.slice(0, 2)} />
-                    <PopularProduct data={listProduct.slice(2, 10)} />
-                    <SaleHomePage />
-                    <Footer />
-                </div>
+        <div>
+            <div className={container}>
+                <Header />
+                <Banner />
+                <Info />
+                <AdvanceHeadling />
+                <HeadingListProduct data={listProduct.slice(0, 2)} />
+                <PopularProduct data={listProduct.slice(2, 10)} />
+                <SaleHomePage />
+                <Footer />
             </div>
-        </OurShopProvider>
+        </div>
     );
 }
 
