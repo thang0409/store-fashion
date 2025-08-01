@@ -6,7 +6,12 @@
 
     flex-direction: column;
     padding: 20px;
-    height: 95vh;
+    max-height: 95vh;
+
+    .products {
+        height: 65vh;
+        overflow-y: auto;
+    }
 
     .total {
         @include flex_box_custom(space-between, center, 0px);
@@ -16,4 +21,15 @@
         width: 100%;
         margin: 8px 0;
     }
+
+    .boxEmpty {
+        text-align: center;
+        font-size: 14px;
+        color: $second_color;
+        margin-top: 20px;
+    }
+}
+
+.isEmpty {
+    justify-content: unset;
 }

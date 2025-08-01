@@ -15,7 +15,7 @@ function Login() {
     const { container, title, boxRemember, boxBtn, lostPass } = styles;
     const [isRegister, setIsRegister] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
-    const { setIsOpen } = useContext(SideBarContext);
+    const { setIsOpen, handleGetListProduct } = useContext(SideBarContext);
     const { setUserId } = useContext(StoreContext);
     const { toast } = useContext(ToastContext);
 
@@ -65,6 +65,7 @@ function Login() {
                         Cookies.set('refreshToken', refreshToken);
                         toast.success('Đăng nhập thành công');
                         setIsOpen(false);
+                        handleGetListProduct(id, 'cart');
                     })
                     .catch((err) => {
                         setIsLoading(false);

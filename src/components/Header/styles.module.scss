@@ -98,3 +98,23 @@
     transition: all 0.3s ease-in;
     opacity: 1;
 }
+
+.boxCart {
+    @include flex_box_custom(center, center, 8px);
+    position: relative;
+    .quantity {
+        @include flex_box_custom(center, center, 0px);
+
+        position: absolute;
+        background-color: #000;
+        width: 5px;
+        height: 5px;
+        top: -6px;
+        right: -1px;
+        border-radius: 50%;
+        color: #fff;
+        font-size: 10px;
+        padding: 6px;
+        border: 1px solid #fff;
+    }
+}

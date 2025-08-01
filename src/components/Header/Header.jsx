@@ -8,6 +8,9 @@ import { useContext, useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { SideBarContext } from '@/contexts/SideBar';
 import { StoreContext } from '@/contexts/storeProvider';
+import { TfiReload } from 'react-icons/tfi';
+import { FaRegHeart } from 'react-icons/fa';
+import { FiShoppingCart } from 'react-icons/fi';
 
 function Header() {
     const {
@@ -18,13 +21,20 @@ function Header() {
         containerMenu,
         containerBox,
         boxIcon,
-        fixedToHeader
+        fixedToHeader,
+        boxCart,
+        quantity
     } = styles;
-    const { isOpen, setIsOpen, type, setType } = useContext(SideBarContext);
+    const { isOpen, setIsOpen, type, setType, listProductCart } =
+        useContext(SideBarContext);
 
     const [fixedHeader, setFixedHeader] = useState(false);
 
     const { scrollPositon } = useScroll();
+
+    const quantityCart = listProductCart.reduce((sum, item) => {
+        return sum + item.quantity;
+    }, 0);
 
     const handleOpenSideBar = (type) => {
         setIsOpen(true);
@@ -101,7 +111,7 @@ function Header() {
 
                     <div className={containerBoxIcon}>
                         {dataIcon
-                            .slice(3, dataIcon.length)
+                            .slice(3, dataIcon.length - 1)
                             .map((item, index) => (
                                 <BoxIcon
                                     key={index}
@@ -117,6 +127,19 @@ function Header() {
                                     }
                                 />
                             ))}
+
+                        <div className={boxCart}>
+                            <FiShoppingCart
+                                style={{
+                                    color: '$primary_color',
+                                    fontSize: '22px',
+                                    margin: '0 8px'
+                                }}
+                                onClick={() => handleOpenSideBar('cart')}
+                            />
+
+                            <div className={quantity}>{quantityCart}</div>
+                        </div>
                     </div>
                 </div>
             </div>

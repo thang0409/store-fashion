@@ -1,0 +1,277 @@
+@use '@styles/variable' as *;
+@use '@styles/mixin' as *;
+
+.containerStep {
+    @include flex_box_custom(center, center, 40px);
+
+    flex-direction: column;
+
+    margin-top: 100px;
+    background-color: #fafafa;
+    padding: 30px 0;
+
+    .stepper {
+        @include flex_box_custom(center, center, 8px);
+        .numberStep {
+            @include flex_box_custom(center, center, 0px);
+
+            background-color: #000;
+            width: 28px;
+            height: 28px;
+            color: #fff;
+            font-size: 18px;
+            border-radius: 50%;
+        }
+
+        .disableNumber {
+            background-color: transparent;
+            border: 1px solid #e1e1e1;
+            color: #ccc;
+        }
+
+        .textStep {
+            color: #222;
+            font-size: 20px;
+        }
+
+        .disableText {
+            color: #888;
+        }
+    }
+
+    .textNoti {
+        font-size: 16px;
+        color: #333;
+    }
+
+    .step {
+        @include flex_box_custom(center, center, 20px);
+
+        .line {
+            width: 120px;
+            height: 1px;
+            background-color: #e1e1e1;
+        }
+    }
+}
+
+.containerContent {
+    @include flex_box_custom(space-between, start, 30px);
+    margin: 40px 0;
+
+    .cartWrapper {
+        max-width: 900px;
+        margin: 0 auto;
+        overflow-x: auto;
+        font-family: sans-serif;
+    }
+
+    .cartTable {
+        position: relative;
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 800px;
+
+        th {
+            text-align: left;
+            padding: 12px 8px;
+            border-bottom: 2px solid #ddd;
+            color: #333;
+            font-size: 14px;
+            font-weight: 400;
+        }
+
+        td {
+            padding: 16px 8px;
+            vertical-align: middle;
+            border-bottom: 1px solid #eee;
+        }
+
+        select {
+            padding: 4px 6px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .loadingCart {
+            @include flex_box_custom(center, center, 20px);
+
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            bottom: 0;
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+    }
+
+    .productCell {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        position: relative;
+
+        img {
+            width: 80px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+
+            .name {
+                font-weight: 600;
+                font-size: 15px;
+            }
+
+            .size {
+                font-size: 14px;
+                color: #666;
+            }
+        }
+    }
+
+    .trashIcon {
+        position: absolute;
+        right: 0px;
+        top: 49%;
+        transform: translateY(-50%);
+        color: #888;
+        cursor: pointer;
+
+        &:hover {
+            color: red;
+        }
+    }
+
+    .boxFooter {
+        @include flex_box_custom(space-between, center, 0px);
+        margin-top: 30px;
+    }
+    .boxCoupon {
+        @include flex_box_custom(center, center, 0px);
+        height: 37px;
+        input {
+            border: 1px solid #e1e1e1;
+            padding: 8px 8px 8px 12px;
+            width: 370px;
+            height: 100%;
+            border-radius: 2px;
+            outline: none;
+
+            &:focus {
+                border: 1px solid #222;
+            }
+        }
+
+        .btnAgree {
+            @include flex_box_custom(center, center, 0px);
+            height: 100%;
+            padding: 26px 24px;
+            border-radius: 0px;
+            margin-left: 10px;
+        }
+
+        .boxDelete {
+            width: 218px;
+            height: 34px;
+        }
+
+        .btnDeleteAll {
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
+
+.boxEmptyCart {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    height: 500px;
+}
+
+.containerSummary {
+    padding: 25px;
+    border: 2px solid #333;
+
+    .titleSummary {
+        text-transform: uppercase;
+        font-size: 16px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #e1e1e1;
+    }
+
+    .boxTotal {
+        @include flex_box_custom(space-between, center, 0px);
+        margin: 20px 0;
+        font-size: 20px;
+        color: #222;
+    }
+
+    .subTotal {
+        color: #555;
+        font-size: 14px;
+        font-weight: 300;
+        .priceSubTotal {
+            color: #888;
+            font-weight: 400;
+        }
+    }
+
+    .btnTotal {
+        width: 100%;
+        margin-top: 10px;
+        cursor: pointer;
+    }
+}
+
+.containerMethod {
+    @include flex_box_custom(center, center, 0px);
+    padding: 25px 0;
+    flex-direction: column;
+    position: relative;
+    height: 100px;
+    width: 100%;
+    border: 1px solid #ccc;
+    margin-top: 40px;
+
+    .titleMethod {
+        width: 70%;
+        position: absolute;
+        top: -10px;
+        text-align: center;
+        background-color: #fff;
+        padding: 0 10px;
+        text-transform: uppercase;
+        font-size: 14px;
+
+        span {
+            color: #2e7d32;
+        }
+    }
+
+    .boxMethod {
+        @include flex_box_custom(center, center, 10px);
+    }
+
+    .imgMethod {
+        border: 1px solid #e1e1e1;
+        width: 50px;
+        height: 34px;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            cursor: pointer;
+        }
+    }
+}
