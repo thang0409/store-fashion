@@ -28,6 +28,8 @@ function Header() {
     const { isOpen, setIsOpen, type, setType, listProductCart, userId, handleGetListProduct } =
         useContext(SideBarContext);
 
+    const { userInfo } = useContext(StoreContext);
+
     const [fixedHeader, setFixedHeader] = useState(false);
 
     const { scrollPositon } = useScroll();
