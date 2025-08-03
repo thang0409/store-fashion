@@ -1,0 +1,30 @@
+.custom-arrow {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    width: 40px;
+    height: 40px;
+    z-index: 1000;
+    opacity: 1;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    transition: opacity 0.3s ease, color 0.3s ease;
+}
+
+.next-arrow {
+    right: 10px;
+    color: black;
+}
+
+.prev-arrow {
+    left: 10px;
+    color: black;
+}
+
+.slick-prev:before,
+.slick-next:before {
+    color: #000;
+}

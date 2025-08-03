@@ -1,3 +1,7 @@
+import { BsHandbag } from 'react-icons/bs';
+import { LiaEyeSolid } from 'react-icons/lia';
+import { TfiReload } from 'react-icons/tfi';
+import { FaRegHeart } from 'react-icons/fa';
 import Button from '@/components/Button/Button';
 import styles from './styles.module.scss';
 import { iconProductItem } from '@/components/ProductItem/constant';
@@ -10,8 +14,10 @@ import { SideBarContext } from '@/contexts/SideBar';
 import { ToastContext } from '@/contexts/ToastProvider';
 import { addToCart } from '@/apis/cartService';
 import Loading from '@/components/Loading/Loading';
+import { useNavigate } from 'react-router-dom';
+import { handleAddProductToCart } from '@/utils/helpper';
 
-function ProductItem({ src, prevSrc, name, price, detail, isHomePage = true }) {
+function ProductItem({ src, prevSrc, name, price, detail, isHomePage = true, slide = false }) {
     const {
         container,
         boxImg,
@@ -25,7 +31,8 @@ function ProductItem({ src, prevSrc, name, price, detail, isHomePage = true }) {
         boxBtn,
         content,
         isActiveSize,
-        btnClear
+        btnClear,
+        imageBox
     } = styles;
 
     // const { isShowGrid } = useContext(OurShopContext);
@@ -34,9 +41,21 @@ function ProductItem({ src, prevSrc, name, price, detail, isHomePage = true }) {
     const [sizeChoose, setSizeChoose] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const userId = Cookies.get('userId');
-    const { setIsOpen, setType, handleGetListProduct, listProductCart } =
-        useContext(SideBarContext);
+    const {
+        setIsOpen,
+        setType,
+        handleGetListProduct,
+        listProductCart,
+        setDetailProduct,
+        detailProduct
+    } = useContext(SideBarContext);
     const { toast } = useContext(ToastContext);
+    const navigate = useNavigate();
+
+    const handleNavigate = () => {
+        const path = `/product/${detail._id}`;
+        navigate(path);
+    };
 
     const handleChooseSize = (size) => {
         setSizeChoose(size);
@@ -46,38 +65,24 @@ function ProductItem({ src, prevSrc, name, price, detail, isHomePage = true }) {
         setSizeChoose('');
     };
 
+    const handleShowDetailProductSidear = () => {
+        setIsOpen(true);
+        setType('detail');
+        setDetailProduct(detail);
+    };
+
     const handleAddtoCart = () => {
-        if (!userId) {
-            setIsOpen(true);
-            setType('login');
-            toast.warning('Vui lòng đăng nhập để thêm vào giỏ hàng');
-            return;
-        }
-
-        if (sizeChoose === '') {
-            toast.warning('Vui lòng chọn kích thước');
-        }
-
-        const data = {
+        handleAddProductToCart(
             userId,
-            productId: detail._id,
-            quantity: 1,
-            size: sizeChoose
-        };
-        setIsLoading(true);
-
-        addToCart(data)
-            .then((res) => {
-                setIsOpen(true);
-                setType('cart');
-                setIsLoading(false);
-                toast.success('Add product to cart success');
-                handleGetListProduct(userId, 'cart');
-            })
-            .catch((err) => {
-                setIsLoading(false);
-                toast.error('Add product to cart failed');
-            });
+            setIsOpen,
+            setType,
+            toast,
+            sizeChoose,
+            detail._id,
+            1,
+            setIsLoading,
+            handleGetListProduct
+        );
     };
 
     useEffect(() => {
@@ -87,15 +92,24 @@ function ProductItem({ src, prevSrc, name, price, detail, isHomePage = true }) {
             setIsShowGrid(ourShop?.isShowGrid);
         }
     }, [isHomePage, ourShop?.isShowGrid]);
+
+    useEffect(() => {
+        if (slide) {
+            setIsShowGrid(true);
+        }
+    }, [slide]);
     return (
         <div className={!isShowGrid ? container : ''}>
             <div className={boxImg}>
-                <img src={src} alt='Product' />
-                <img src={prevSrc} alt='' className={showImg} />
+                <div className={imageBox} onClick={handleNavigate}>
+                    <img src={src} alt='Product' />
+                    <img src={prevSrc} alt='' className={showImg} />
+                </div>
                 <div className={showFnc}>
-                    {iconProductItem.map((item, index) => (
-                        <IconItem key={index} icon={item} />
-                    ))}
+                    <IconItem icon={BsHandbag} />
+                    <IconItem icon={FaRegHeart} />
+                    <IconItem icon={TfiReload} />
+                    <IconItem icon={LiaEyeSolid} onClick={handleShowDetailProductSidear} />
                 </div>
             </div>
 
@@ -139,9 +153,7 @@ function ProductItem({ src, prevSrc, name, price, detail, isHomePage = true }) {
 
                 {!isHomePage && (
                     <div onClick={handleAddtoCart} className={boxBtn}>
-                        <Button
-                            content={isLoading ? <Loading /> : 'Add To Card'}
-                        />
+                        <Button content={isLoading ? <Loading /> : 'Add To Card'} />
                     </div>
                 )}
             </div>

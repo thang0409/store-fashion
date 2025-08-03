@@ -58,24 +58,24 @@
         @include flex_box_custom(center, center, 20px);
     }
 
-    .selectBox {
-        border: 1px solid #e1e1e1;
-        padding: 5px;
-        color: $eight_color;
-        outline: none;
-    }
-
-    .sort {
-        width: 275px;
-    }
-
-    .show {
-        width: 85px;
-    }
     .boxIcon {
         @include flex_box_custom(center, center, 10px);
         cursor: pointer;
     }
+}
+.selectBox {
+    border: 1px solid #e1e1e1;
+    padding: 5px;
+    color: $eight_color;
+    outline: none;
+}
+
+.sort {
+    width: 275px;
+}
+
+.show {
+    width: 85px;
 }
 
 .boxProductsGrid {

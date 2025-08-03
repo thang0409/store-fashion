@@ -1,9 +1,9 @@
 import styles from '../styles.module.scss';
 
-function IconItem({ icon: Icon }) {
+function IconItem({ icon: Icon, type, onClick }) {
     const { icon } = styles;
     return (
-        <div className={icon}>
+        <div className={icon} type={type} onClick={onClick}>
             <Icon />
         </div>
     );

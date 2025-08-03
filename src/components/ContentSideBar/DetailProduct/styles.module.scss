@@ -1,0 +1,91 @@
+@use '@styles/variable' as *;
+@use '@styles/mixin' as *;
+
+.container {
+    padding: 20px;
+    overflow-y: scroll;
+
+    .title {
+        font-size: 24px;
+        color: $second_color;
+        margin-top: 20px;
+    }
+
+    .priceStyle {
+        font-size: 20px;
+        color: $eight_color;
+        margin: 10px 0;
+    }
+
+    .des {
+        color: #555;
+        margin-bottom: 20px;
+    }
+
+    .boxSize {
+        @include flex_box_custom(start, center, 10px);
+
+        margin-top: 10px;
+        .size {
+            width: 30px;
+            height: 30px;
+            padding: 0;
+            cursor: pointer;
+        }
+
+        .isActive {
+            background-color: #222;
+        }
+    }
+
+    .boxAddtoCart {
+        @include flex_box_custom(start, center, 10px);
+        margin-top: 10px;
+
+        select {
+            width: 65px;
+            height: 43px;
+        }
+    }
+
+    .boxOr {
+        @include flex_box_custom(center, center, 10px);
+        margin-top: 15px;
+
+        .line {
+            width: 100%;
+            height: 1px;
+            background-color: #e1e1e1;
+            flex-grow: 1;
+        }
+
+        .or {
+            text-transform: uppercase;
+            font-size: 12px;
+            color: $five_color;
+            font-weight: 500;
+        }
+    }
+
+    .selectBtn {
+        width: 100%;
+    }
+
+    .boxAddOther {
+        @include flex_box_custom(start, center, 10px);
+        margin: 15px 0;
+        cursor: pointer;
+        color: #222;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+    .subBox {
+        margin-top: 12px;
+
+        span {
+            color: #888;
+        }
+    }
+}

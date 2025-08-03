@@ -25,7 +25,7 @@ function Header() {
         boxCart,
         quantity
     } = styles;
-    const { isOpen, setIsOpen, type, setType, listProductCart } =
+    const { isOpen, setIsOpen, type, setType, listProductCart, userId, handleGetListProduct } =
         useContext(SideBarContext);
 
     const [fixedHeader, setFixedHeader] = useState(false);
@@ -39,6 +39,11 @@ function Header() {
     const handleOpenSideBar = (type) => {
         setIsOpen(true);
         setType(type);
+    };
+
+    const handleGetListProductsCart = () => {
+        handleGetListProduct(userId, 'cart');
+        handleOpenSideBar('cart');
     };
 
     useEffect(() => {
@@ -74,11 +79,7 @@ function Header() {
                     </div>
                     <div className={containerMenu}>
                         {dataMenu.slice(0, 3).map((item, index) => (
-                            <Menu
-                                key={index}
-                                content={item.content}
-                                href={item.href}
-                            />
+                            <Menu key={index} content={item.content} href={item.href} />
                         ))}
                     </div>
                 </div>
@@ -98,35 +99,25 @@ function Header() {
                 {/* Khối phải */}
                 <div className={containerBox}>
                     <div className={containerMenu}>
-                        {dataMenu
-                            .slice(3, dataMenu.length)
-                            .map((item, index) => (
-                                <Menu
-                                    key={index}
-                                    content={item.content}
-                                    href={item.href}
-                                />
-                            ))}
+                        {dataMenu.slice(3, dataMenu.length).map((item, index) => (
+                            <Menu key={index} content={item.content} href={item.href} />
+                        ))}
                     </div>
 
                     <div className={containerBoxIcon}>
-                        {dataIcon
-                            .slice(3, dataIcon.length - 1)
-                            .map((item, index) => (
-                                <BoxIcon
-                                    key={index}
-                                    type={item.type}
-                                    href={item.href}
-                                    style={{
-                                        color: '$primary_color',
-                                        fontSize: '20px',
-                                        margin: '0px 8px'
-                                    }}
-                                    onClick={() =>
-                                        handleOpenSideBar(item.title)
-                                    }
-                                />
-                            ))}
+                        {dataIcon.slice(3, dataIcon.length - 1).map((item, index) => (
+                            <BoxIcon
+                                key={index}
+                                type={item.type}
+                                href={item.href}
+                                style={{
+                                    color: '$primary_color',
+                                    fontSize: '20px',
+                                    margin: '0px 8px'
+                                }}
+                                onClick={() => handleOpenSideBar(item.title)}
+                            />
+                        ))}
 
                         <div className={boxCart}>
                             <FiShoppingCart
@@ -135,7 +126,7 @@ function Header() {
                                     fontSize: '22px',
                                     margin: '0 8px'
                                 }}
-                                onClick={() => handleOpenSideBar('cart')}
+                                onClick={() => handleGetListProductsCart()}
                             />
 
                             <div className={quantity}>{quantityCart}</div>

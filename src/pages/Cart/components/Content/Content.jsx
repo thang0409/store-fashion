@@ -4,9 +4,9 @@ import CartTable from '@/pages/Cart/components/Content/CartTable';
 import CartSummary from '@/pages/Cart/components/Content/CartSummary';
 import Button from '@/components/Button/Button';
 import { FaTrashAlt } from 'react-icons/fa';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { SideBarContext } from '@/contexts/SideBar';
-import { addToCart, deleteAllCart, deleteItem } from '@/apis/cartService';
+import { addToCart, deleteAllCart, deleteItem, getCart } from '@/apis/cartService';
 import { FiShoppingCart } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
 
@@ -26,7 +26,8 @@ function Content() {
         handleGetListProduct,
         isLoading,
         setIsLoading,
-        userId
+        userId,
+        setListProductCart
     } = useContext(SideBarContext);
 
     const navigate = useNavigate();
@@ -60,6 +61,18 @@ function Content() {
             .catch((err) => setIsLoading(false));
     };
 
+    useEffect(() => {
+        getCart(userId)
+            .then((res) => {
+                setListProductCart(res.data.data);
+                setIsLoading(false);
+            })
+            .catch((err) => {
+                setListProductCart([]);
+                setIsLoading(false);
+            });
+    }, []);
+
     return (
         <MainLayout>
             <>
@@ -75,15 +88,8 @@ function Content() {
 
                             <div className={boxFooter}>
                                 <div className={boxCoupon}>
-                                    <input
-                                        type='text'
-                                        placeholder='Coupon code'
-                                    />
-                                    <Button
-                                        className={btnAgree}
-                                        content={'OK'}
-                                        isPrimary={false}
-                                    />
+                                    <input type='text' placeholder='Coupon code' />
+                                    <Button className={btnAgree} content={'OK'} isPrimary={false} />
                                 </div>
 
                                 <div className={boxDelete}>
@@ -126,16 +132,12 @@ function Content() {
                                 textAlign: 'center'
                             }}
                         >
-                            We invite you to get acquainted with an assortment
-                            of our shop. Surely you can find something for
-                            yourself!
+                            We invite you to get acquainted with an assortment of our shop. Surely
+                            you can find something for yourself!
                         </div>
 
                         <div>
-                            <Button
-                                onClick={handleReturnToShop}
-                                content={'RETURN TO SHOP'}
-                            />
+                            <Button onClick={handleReturnToShop} content={'RETURN TO SHOP'} />
                         </div>
                     </div>
                 )}

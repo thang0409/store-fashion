@@ -10,6 +10,7 @@ export const SideBarProvider = ({ children }) => {
     const [type, setType] = useState('');
     const [listProductCart, setListProductCart] = useState([]);
     const userId = Cookies.get('userId');
+    const [detailProduct, setDetailProduct] = useState(null);
 
     const handleGetListProduct = (userId, type) => {
         if (userId && type === 'cart') {
@@ -26,9 +27,6 @@ export const SideBarProvider = ({ children }) => {
         }
     };
 
-    useEffect(() => {
-        handleGetListProduct(Cookies.get('userId'), 'cart');
-    }, []);
     return (
         <SideBarContext.Provider
             value={{
@@ -40,7 +38,10 @@ export const SideBarProvider = ({ children }) => {
                 listProductCart,
                 isLoading,
                 setIsLoading,
-                userId
+                userId,
+                setDetailProduct,
+                detailProduct,
+                setListProductCart
             }}
         >
             {children}

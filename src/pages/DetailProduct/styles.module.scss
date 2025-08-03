@@ -1,0 +1,302 @@
+@use '@styles/variable' as *;
+@use '@styles/mixin' as *;
+
+.container {
+    padding-top: 100px;
+
+    .navigateSection {
+        @include flex_box_custom(space-between, center, 0px);
+
+        font-size: 14px;
+        font-weight: 300;
+        color: $second_color;
+        padding: 10px 0px;
+        cursor: pointer;
+    }
+    .contentSection {
+        @include flex_box_custom(center, start, 20px);
+        margin-top: 20px;
+
+        .imgBox {
+            @include flex_box_custom(center, center, 10px);
+
+            flex-wrap: wrap;
+            width: 100%;
+            flex: 1;
+            border-radius: 8px;
+            overflow: hidden;
+
+            img {
+                width: calc(50% - 10px);
+                height: 350px;
+                object-fit: cover;
+                cursor: zoom-in;
+            }
+        }
+
+        .boxContent {
+            flex: 1;
+
+            h1 {
+                font-size: 24px;
+                font-weight: 400;
+                margin: 0;
+                color: $second_color;
+            }
+
+            .priceStyle {
+                font-size: 20px;
+                color: $eight_color;
+            }
+
+            .des {
+                color: #333;
+                font-weight: 400;
+            }
+
+            .boxSize {
+                @include flex_box_custom(start, center, 10px);
+
+                .size {
+                    @include flex_box_custom(center, center, 0px);
+
+                    border: 1px solid #e1e1e1;
+                    padding: 5px 7px;
+                    border-radius: 3px;
+                    cursor: pointer;
+                    font-size: 12px;
+                    color: $five_color;
+                }
+
+                .activeSize {
+                    border: 1px solid #000;
+                    color: #333;
+                }
+            }
+
+            .boxAddtoCart {
+                margin-top: 10px;
+
+                .boxCount {
+                    @include flex_box_custom(start, center, 15px);
+                }
+
+                .countBtn {
+                    border: 1px solid #ccc;
+                    padding: 5px 10px;
+                    cursor: pointer;
+
+                    &:hover {
+                        background-color: #f4f4f4;
+                    }
+                }
+
+                .count {
+                    font-size: 18px;
+                }
+
+                .addBtn {
+                    margin-top: 10px;
+                    width: 100%;
+                    flex: 1;
+                }
+            }
+
+            .boxOr {
+                @include flex_box_custom(center, center, 10px);
+                margin-top: 15px;
+
+                .line {
+                    width: 100%;
+                    height: 1px;
+                    background-color: #e1e1e1;
+                    flex-grow: 1;
+                }
+
+                .or {
+                    text-transform: uppercase;
+                    font-size: 12px;
+                    color: $five_color;
+                    font-weight: 500;
+                }
+            }
+
+            .fnBox {
+                @include flex_box_custom(start, center, 10px);
+                margin-top: 20px;
+
+                div {
+                    @include flex_box_custom(center, center, 10px);
+
+                    border: 1px solid #ccc;
+                    padding: 8px;
+                    border-radius: 50%;
+                    cursor: pointer;
+
+                    .active {
+                        background-color: #000;
+                        color: white;
+                    }
+                }
+            }
+
+            .info {
+                @include flex_box_custom(center, start, 10px);
+
+                flex-direction: column;
+                margin-top: 20px;
+                color: $second_color;
+                margin-bottom: 20px;
+
+                span {
+                    color: $eight_color;
+                }
+            }
+        }
+    }
+}
+
+.itemInfo {
+    @include flex_box_custom(start, center, 10px);
+
+    border-bottom: 1px solid #e1e1e1;
+    padding: 15px 0;
+
+    div {
+        width: 50%;
+    }
+
+    .infoTitle {
+        color: $eight_color;
+    }
+
+    .infoContent {
+        color: $five_color;
+    }
+}
+
+.containerReview {
+    .titleReview {
+        border-bottom: 1px solid #e1e1e1;
+        text-transform: uppercase;
+        padding-bottom: 15px;
+    }
+
+    .noReview {
+        font-size: 14px;
+        color: $five_color;
+        margin-bottom: 30px;
+    }
+
+    .replyform {
+        padding-top: 30px;
+
+        .replyTitle {
+            padding-bottom: 14px;
+            font-size: 14px;
+            color: $primary_color;
+            text-transform: uppercase;
+            border-bottom: 1px solid #e1e1e1;
+        }
+
+        .commentNotes {
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+    }
+}
+
+.itemForm {
+    .labelInfo {
+        display: block;
+        font-size: 16px;
+        color: #555;
+        margin-bottom: 5px;
+    }
+
+    .inputForm {
+        width: 100%;
+        outline: none;
+        border: 1px solid #e1e1e1;
+        padding: 10px;
+        border-radius: 5px;
+        color: #333;
+        font-size: 14px;
+    }
+
+    .required {
+        color: red;
+    }
+
+    .boxStar {
+        display: flex;
+        gap: 10px;
+
+        .itemStar {
+            &:hover .star {
+                color: gold;
+            }
+        }
+    }
+
+    .star {
+        color: #ddd;
+    }
+
+    .activeStar {
+        color: gold;
+    }
+}
+
+.checkInfo {
+    display: flex;
+    align-items: start;
+    gap: 5px;
+
+    input {
+        margin-top: 3px;
+    }
+}
+
+.btnBox {
+    width: 200px;
+    margin-top: 20px;
+    .submitBtn {
+        width: 100%;
+    }
+}
+
+.sectionSlider {
+}
+
+.btnDisable {
+    cursor: not-allowed;
+    opacity: 0.7;
+
+    &:hover {
+        cursor: not-allowed;
+        background-color: #333;
+        color: #fff;
+    }
+}
+
+.loading {
+    height: 977px;
+    @include flex_box_custom(center, center, 0px);
+
+    background-color: #ccc;
+}
+
+.emptyData {
+    @include flex_box_custom(center, center, 0px);
+
+    height: 900px;
+    flex-direction: column;
+}
