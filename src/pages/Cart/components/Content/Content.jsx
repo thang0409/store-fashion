@@ -76,75 +76,73 @@ function Content() {
     }, []);
 
     return (
-        <MainLayout>
-            <>
-                {listProductCart.length > 0 && userId ? (
-                    <div className={containerContent}>
-                        <div>
-                            <CartTable
-                                listProductCart={listProductCart}
-                                getData={handleReplaceQuantity}
-                                isLoading={isLoading}
-                                deleteItemCart={handleDeleteItemCart}
-                            />
+        <>
+            {listProductCart.length > 0 && userId ? (
+                <div className={containerContent}>
+                    <div>
+                        <CartTable
+                            listProductCart={listProductCart}
+                            getData={handleReplaceQuantity}
+                            isLoading={isLoading}
+                            deleteItemCart={handleDeleteItemCart}
+                        />
 
-                            <div className={boxFooter}>
-                                <div className={boxCoupon}>
-                                    <input type='text' placeholder='Coupon code' />
-                                    <Button className={btnAgree} content={'OK'} isPrimary={false} />
-                                </div>
+                        <div className={boxFooter}>
+                            <div className={boxCoupon}>
+                                <input type='text' placeholder='Coupon code' />
+                                <Button className={btnAgree} content={'OK'} isPrimary={false} />
+                            </div>
 
-                                <div className={boxDelete}>
-                                    <Button
-                                        className={btnDeleteAll}
-                                        content={
-                                            <div
+                            <div className={boxDelete}>
+                                <Button
+                                    className={btnDeleteAll}
+                                    content={
+                                        <div
+                                            style={{
+                                                display: 'flex'
+                                            }}
+                                        >
+                                            <FaTrashAlt
                                                 style={{
-                                                    display: 'flex'
+                                                    marginRight: '10px'
                                                 }}
-                                            >
-                                                <FaTrashAlt
-                                                    style={{
-                                                        marginRight: '10px'
-                                                    }}
-                                                />
-                                                CLEAR SHOPPING CART
-                                            </div>
-                                        }
-                                        isPrimary={false}
-                                        onClick={() => handleDeleteAllCart()}
-                                    />
-                                </div>
+                                            />
+                                            CLEAR SHOPPING CART
+                                        </div>
+                                    }
+                                    isPrimary={false}
+                                    onClick={() => handleDeleteAllCart()}
+                                />
                             </div>
                         </div>
-
-                        <div>
-                            <CartSummary />
-                        </div>
                     </div>
-                ) : (
-                    <div className={boxEmptyCart}>
-                        <div>
-                            <FiShoppingCart style={{ fontSize: '40px' }} />
-                        </div>
 
-                        <div>Your shopping cart is empty</div>
-                        <div
-                            style={{
-                                textAlign: 'center'
-                            }}
-                        >
-                            We invite you to get acquainted with an assortment of our shop. Surely
-                            you can find something for yourself!
-                        </div>
-
-                        <div>
-                            <Button onClick={handleReturnToShop} content={'RETURN TO SHOP'} />
-                        </div>
+                    <div>
+                        <CartSummary />
                     </div>
-                )}
-            </>
-        </MainLayout>
+                </div>
+            ) : (
+                <div className={boxEmptyCart}>
+                    <div>
+                        <FiShoppingCart style={{ fontSize: '40px' }} />
+                    </div>
+
+                    <div>Your shopping cart is empty</div>
+                    <div
+                        style={{
+                            textAlign: 'center'
+                        }}
+                    >
+                        We invite you to get acquainted with an assortment of our shop. Surely you
+                        can find something for yourself!
+                    </div>
+
+                    <div>
+                        <Button onClick={handleReturnToShop} content={'RETURN TO SHOP'} />
+                    </div>
+                </div>
+            )}
+        </>
     );
 }
 

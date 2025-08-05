@@ -1,0 +1,97 @@
+@use '@styles/variable' as *;
+@use '@styles/mixin' as *;
+
+.container {
+    @include flex_box_custom(center, start, 40px);
+    padding: 50px 0;
+
+    .title {
+        font-size: 14px;
+        color: #333;
+    }
+
+    .coupon {
+        font-size: 14px;
+        color: #222;
+
+        span {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    }
+
+    .leftBody {
+        flex: 1;
+        .row {
+            margin-bottom: 20px;
+        }
+        .row2Col {
+            @include flex_box_custom(center, center, 20px);
+        }
+    }
+
+    .rightBody {
+        width: 400px;
+        border: 2px solid #333;
+        padding: 20px;
+        .orderTitle {
+            color: #333;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 12px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            margin-top: 0;
+        }
+
+        .items {
+            height: 150px;
+            overflow-y: scroll;
+
+            .item {
+                @include flex_box_custom(start, start, 10px);
+                margin-top: 10px;
+                border-bottom: 1px solid #ccc;
+                padding: 10px 0;
+                img {
+                    width: 70px;
+                    height: 100px;
+                    object-fit: cover;
+                }
+
+                p {
+                    margin: 10px;
+                    color: #555;
+                }
+            }
+        }
+        .total {
+            @include flex_box_custom(space-between, center, 10px);
+            font-size: 18px;
+            color: #555;
+            font-weight: 500;
+            text-transform: uppercase;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .checkPay {
+            font-size: 16px;
+            color: #222;
+
+            p {
+                font-size: 14px;
+                color: #555;
+                margin-left: 20px;
+            }
+        }
+
+        .btnBox {
+            margin-top: 20px;
+        }
+
+        .btnOrder {
+            width: 100%;
+        }
+    }
+}

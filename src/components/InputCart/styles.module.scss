@@ -1,0 +1,27 @@
+.container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .labelInput {
+        font-size: 14px;
+        color: #555;
+        margin-bottom: 5px;
+    }
+
+    select,
+    input {
+        height: 37px;
+        padding: 0 15px;
+        outline: none;
+        border: 1px solid #e1e1e1;
+
+        &:focus {
+            border: 1px solid #222;
+        }
+    }
+
+    .errorInput {
+        border: 1px solid red;
+    }
+}

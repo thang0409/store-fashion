@@ -9,6 +9,7 @@ import Bitcoin from '@/assets/icons/img/bitcoin.jpeg';
 import America from '@/assets/icons/img/american-express.jpeg';
 import { useContext } from 'react';
 import { SideBarContext } from '@/contexts/SideBar';
+import { StepperContext } from '@/contexts/StepperProvider';
 
 function CartSummary() {
     const {
@@ -24,6 +25,8 @@ function CartSummary() {
         boxMethod
     } = styles;
 
+    const { setCurrentStep } = useContext(StepperContext);
+
     const srcMethod = [
         { src: Paypal },
         { src: MasterCart },
@@ -33,13 +36,12 @@ function CartSummary() {
         { src: Visa }
     ];
 
-    const {
-        listProductCart,
-        handleGetListProduct,
-        isLoading,
-        setIsLoading,
-        userId
-    } = useContext(SideBarContext);
+    const { listProductCart, handleGetListProduct, isLoading, setIsLoading, userId } =
+        useContext(SideBarContext);
+
+    const handleProcessCheckOut = () => {
+        setCurrentStep(2);
+    };
 
     const totalPrice = listProductCart
         .reduce((sum, item) => {
@@ -65,12 +67,9 @@ function CartSummary() {
                     <Button
                         className={btnTotal}
                         content={'PROCEED TO CHECKOUT'}
+                        onClick={handleProcessCheckOut}
                     />
-                    <Button
-                        className={btnTotal}
-                        content={'CONTINUE SHOPPING'}
-                        isPrimary={false}
-                    />
+                    <Button className={btnTotal} content={'CONTINUE SHOPPING'} isPrimary={false} />
                 </div>
             </div>
 
