@@ -9,6 +9,7 @@ import PaymentMethod from '@/components/PaymentMethod/PaymentMethod';
 import { SideBarContext } from '@/contexts/SideBar';
 import Button from '@/components/Button/Button';
 import { createOrder } from '@/apis/orderService';
+import { StepperContext } from '@/contexts/StepperProvider';
 function CheckOut() {
     const {
         container,
@@ -49,6 +50,8 @@ function CheckOut() {
         setListProductCart
     } = useContext(SideBarContext);
 
+    const { setCurrentStep } = useContext(StepperContext);
+
     const totalPrice = listProductCart
         .reduce((sum, item) => {
             const result = sum + item.price * item.quantity;
@@ -63,7 +66,8 @@ function CheckOut() {
     const onSubmitForm = async (data) => {
         try {
             const res = await createOrder(data);
-            navigate(`/order?id=${res.data.data._id}&totalAmount=${res.data.data.totalAmount}`);
+            setCurrentStep(3);
+            navigate(`?id=${res.data.data._id}&totalAmount=${res.data.data.totalAmount}`);
             console.log(res.data.data);
         } catch (error) {
             console.log(error);
